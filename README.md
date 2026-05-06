@@ -6,7 +6,7 @@
 
 ---
 
-## 🚀 About This Portfolio
+## 🚀 About this Portfolio
 
 Modern, responsive portfolio website showcasing my AI/ML projects, certifications, and technical skills.
 
@@ -54,7 +54,7 @@ Modern, responsive portfolio website showcasing my AI/ML projects, certification
 ## 📬 Contact
 
 - **Email:** adinarehman018@gmail.com
-- **GitHub:** [adina-mini](https://github.com/adina-mini)
+- **GitHub:** [adina-mini](https://github.com/adina-mini) 
 - **LinkedIn:** [Adina Rehman Z](https://linkedin.com/in/adina-rehman-z/)
 
 ---
