@@ -1,16 +1,66 @@
-# React + Vite
+# Adina Rehman – AI Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## AI Orchestration Specialist | Generative AI Engineer | Data Analyst
 
-Currently, two official plugins are available:
+🔗 **Live Site:** [Coming soon after Vercel deploy]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 About This Portfolio
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Modern, responsive portfolio website showcasing my AI/ML projects, certifications, and technical skills.
 
-## Expanding the ESLint configuration
+### 🎨 Design
+- Dark theme with plum & olive accents
+- Smooth animations
+- Fully responsive (mobile/tablet/desktop)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🐾 Fun Detail
+- Animated cat and dog running across footer
+- Welcome message on page load
+
+---
+
+## 🛠️ Tech Stack
+
+- **React** – Component-based architecture
+- **Tailwind CSS** – Styling
+- **Framer Motion** – Animations
+- **Vite** – Build tool
+
+---
+
+## 📂 Projects Featured
+
+1. **Smart Habit Architect (PWA)** – Offline-first habit tracker
+2. **Agentic Lead Intake Engine** – n8n + Llama 3 automation
+3. **Intelligent Email Response** – GPT-4o mini email automation
+4. **RAG Technical Audit Analyst** – Pinecone + OpenAI embeddings
+
+---
+
+## 📜 Certifications
+
+### Specializations
+- Machine Learning Specialization – Stanford
+- Google Prompting Essentials – Google
+
+### Technical Courses
+- DeepLearning.AI (3 courses)
+- IBM, Microsoft, Google certifications
+
+---
+
+## 📬 Contact
+
+- **Email:** adinarehman018@gmail.com
+- **GitHub:** [adina-mini](https://github.com/adina-mini)
+- **LinkedIn:** [Adina Rehman Z](https://linkedin.com/in/adina-rehman-z/)
+
+---
+
+## 🖥️ Run Locally
+
+```bash
+npm install
+npm run dev
