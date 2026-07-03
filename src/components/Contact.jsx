@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Send, Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const socialLinks = [
   { platform: 'github', label: 'github.com/adina-mini', url: 'https://github.com/adina-mini' },
@@ -19,6 +20,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -96,6 +98,7 @@ const Contact = () => {
             value={formData.name}
             onChange={handleChange}
             className="w-full px-4 py-3 rounded-xl bg-[#0F0F0F] border border-beige/20 text-beige focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent transition"
+            disabled={loading}
           />
           <input
             type="email"
@@ -104,6 +107,7 @@ const Contact = () => {
             value={formData.email}
             onChange={handleChange}
             className="w-full px-4 py-3 rounded-xl bg-[#0F0F0F] border border-beige/20 text-beige focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent transition"
+            disabled={loading}
           />
           <textarea
             name="message"
@@ -112,13 +116,16 @@ const Contact = () => {
             value={formData.message}
             onChange={handleChange}
             className="w-full px-4 py-3 rounded-xl bg-[#0F0F0F] border border-beige/20 text-beige focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent transition resize-none"
+            disabled={loading}
           />
           {error && <p className="text-red-400 text-sm">{error}</p>}
           <button
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-plum to-plum/80 text-beige rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-plum/20 transition"
+            className="w-full py-3 bg-gradient-to-r from-plum to-plum/80 text-beige rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-plum/20 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={loading}
           >
-            Send Message <Send size={18} />
+            {loading ? 'Sending...' : 'Send Message'} 
+            <Send size={18} />
           </button>
           {submitted && (
             <p className="text-olive text-center">✨ Message sent! I'll get back to you soon.</p>
