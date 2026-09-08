@@ -1,7 +1,9 @@
-import React from 'react';
-import { Award, GraduationCap, Code, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { Award, GraduationCap, Zap, Code, ChevronDown, ChevronUp } from 'lucide-react';
 
 const Certifications = () => {
+  const [showAll, setShowAll] = useState(false);
+
   const specializations = [
     {
       title: 'Machine Learning Specialization',
@@ -10,43 +12,27 @@ const Certifications = () => {
       icon: <GraduationCap size={18} />,
     },
     {
-      title: 'Google Prompting Essentials',
-      issuer: 'Google',
-      date: 'January 2025',
+      title: 'AI Fluency: Framework & Foundations',
+      issuer: 'Sep Anthropic',
+      date: '2026',
       icon: <Zap size={18} />,
+    },
+    {
+      title: 'IBM AI Developer',
+      issuer: 'IBM',
+      date: 'Aug 2025',
+      icon: <Code size={18} />,
     },
   ];
 
-  const technicalCourses = [
-    {
-      title: 'Advanced Learning Algorithms',
-      issuer: 'DeepLearning.AI',
-    },
-    {
-      title: 'Supervised Machine Learning: Regression and Classification',
-      issuer: 'DeepLearning.AI',
-    },
-    {
-      title: 'Unsupervised Learning, Recommenders, Reinforcement Learning',
-      issuer: 'DeepLearning.AI',
-    },
-    {
-      title: 'Building Generative AI-Powered Applications with Python',
-      issuer: 'IBM',
-    },
-    {
-      title: 'Foundations of Coding Full Stack',
-      issuer: 'Microsoft',
-    },
-    {
-      title: 'Design Prompts for Everyday Work Tasks',
-      issuer: 'Google',
-    },
-    {
-      title: 'Start Writing Prompts like a Pro',
-      issuer: 'Google',
-    },
+  const otherCerts = [
+    { title: 'Google Prompting Essentials', issuer: 'Google' },
+    { title: 'AI Fluency for Students', issuer: 'Anthropic' },
+    { title: 'Claude 101', issuer: 'Anthropic' },
+    { title: 'Foundations of Coding Full Stack', issuer: 'Microsoft' },
   ];
+
+  const visibleCerts = showAll ? otherCerts : otherCerts.slice(0, 3);
 
   return (
     <section id="certifications" className="py-20">
@@ -57,16 +43,9 @@ const Certifications = () => {
           </span>
         </h2>
 
-        {/* Specializations Section */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-0.5 bg-plum"></div>
-            <h3 className="text-xl font-semibold text-plum flex items-center gap-2">
-              <GraduationCap size={20} /> Specializations
-            </h3>
-            <div className="flex-1 h-0.5 bg-gradient-to-r from-plum to-transparent"></div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
+        {/* Specializations */}
+        <div className="mb-8">
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {specializations.map((cert) => (
               <div
                 key={cert.title}
@@ -89,51 +68,37 @@ const Certifications = () => {
           </div>
         </div>
 
-        {/* Technical Courses Section */}
-        <div>
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-0.5 bg-olive"></div>
-            <h3 className="text-xl font-semibold text-olive flex items-center gap-2">
-              <Code size={20} /> Technical Courses
-            </h3>
-            <div className="flex-1 h-0.5 bg-gradient-to-r from-olive to-transparent"></div>
+        {/* Compact list of other certs, expandable */}
+        <div className="max-w-3xl mx-auto">
+          <div className="flex items-center gap-2 mb-4 justify-center">
+            <Award size={16} className="text-olive" />
+            <p className="text-sm text-beige/50">Also completed</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {technicalCourses.map((course) => (
-              <div
-                key={course.title}
-                className="bg-[#0F0F0F] border border-beige/10 rounded-xl p-4 hover:border-olive/30 transition-all duration-300 hover:scale-[1.02]"
+          <div className="flex flex-wrap justify-center gap-3 mb-4">
+            {visibleCerts.map((cert) => (
+              <span
+                key={cert.title}
+                className="px-3 py-1.5 bg-beige/5 border border-beige/10 rounded-full text-xs text-beige/60"
+                title={cert.issuer}
               >
-                <div className="flex items-start gap-3">
-                  <div className="mt-1">
-                    <Award size={16} className="text-olive" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-beige mb-1">{course.title}</h4>
-                    <p className="text-xs text-olive">{course.issuer}</p>
-                  </div>
-                </div>
-              </div>
+                {cert.title} <span className="text-beige/30">· {cert.issuer}</span>
+              </span>
             ))}
           </div>
-        </div>
-
-        {/* Stats Summary */}
-        <div className="mt-12 bg-gradient-to-r from-plum/10 to-olive/10 rounded-2xl p-6 text-center border border-beige/10">
-          <div className="flex flex-wrap justify-center gap-8">
-            <div>
-              <div className="text-3xl font-bold text-plum">2</div>
-              <div className="text-xs text-beige/60">Specializations</div>
+          {otherCerts.length > 3 && (
+            <div className="flex justify-center">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="flex items-center gap-1 text-xs text-beige/50 hover:text-olive transition"
+              >
+                {showAll ? (
+                  <>Show less <ChevronUp size={14} /></>
+                ) : (
+                  <>View all certifications <ChevronDown size={14} /></>
+                )}
+              </button>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-olive">7</div>
-              <div className="text-xs text-beige/60">Technical Courses</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-beige">4</div>
-              <div className="text-xs text-beige/60">Top Institutions</div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
