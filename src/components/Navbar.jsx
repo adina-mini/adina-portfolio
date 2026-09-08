@@ -9,10 +9,10 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-      
-      const sections = ['hero', 'about', 'skills', 'projects', 'certifications', 'contact'];
+
+      const sections = ['hero', 'about', 'experience', 'skills', 'projects', 'certifications', 'contact'];
       const scrollPos = window.scrollY + 100;
-      
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -24,7 +24,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
         }
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -32,6 +32,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
   const navLinks = [
     { name: 'Home', id: 'hero' },
     { name: 'About', id: 'about' },
+    { name: 'Experience', id: 'experience' },
     { name: 'Skills', id: 'skills' },
     { name: 'Projects', id: 'projects' },
     { name: 'Certifications', id: 'certifications' },
@@ -47,11 +48,10 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      scrolled
-        ? 'bg-[#0B0B0B]/90 backdrop-blur-md border-b border-beige/10'
-        : 'bg-transparent'
-    }`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled
+      ? 'bg-[#0B0B0B]/90 backdrop-blur-md border-b border-beige/10'
+      : 'bg-transparent'
+      }`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <a
@@ -70,11 +70,10 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`font-medium transition-all duration-300 ${
-                  activeSection === link.id
-                    ? 'text-plum'
-                    : 'text-beige/70 hover:text-beige'
-                }`}
+                className={`font-medium transition-all duration-300 ${activeSection === link.id
+                  ? 'text-plum'
+                  : 'text-beige/70 hover:text-beige'
+                  }`}
               >
                 {link.name}
                 {activeSection === link.id && (
@@ -99,11 +98,10 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className={`py-2 px-4 rounded-lg text-left transition ${
-                    activeSection === link.id
-                      ? 'bg-plum/20 text-plum'
-                      : 'text-beige/70 hover:text-beige hover:bg-beige/5'
-                  }`}
+                  className={`py-2 px-4 rounded-lg text-left transition ${activeSection === link.id
+                    ? 'bg-plum/20 text-plum'
+                    : 'text-beige/70 hover:text-beige hover:bg-beige/5'
+                    }`}
                 >
                   {link.name}
                 </button>
@@ -112,7 +110,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
           </div>
         )}
       </div>
-    </nav>
+    </nav >
   );
 };
 
