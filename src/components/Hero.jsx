@@ -19,7 +19,7 @@ const Hero = () => {
       <div className="grid md:grid-cols-2 gap-12 items-center w-full">
         <div>
           <div className="inline-block px-3 py-1 bg-plum/20 text-plum rounded-full text-sm mb-4 border border-plum/30">
-            ✨ AI Specialist & Developer
+            ✨ AI/ML Engineer
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4">
             <span className="text-beige">Hi, I'm</span>
@@ -29,9 +29,9 @@ const Hero = () => {
             </span>
           </h1>
           <p className="text-xl text-beige/70 mb-6 leading-relaxed">
-            AI Orchestration Specialist • Generative AI Engineer • Data Analyst
+            AI/ML Engineer — Agentic Systems & Automation
             <br />
-            Building intelligent systems with creative precision.
+            Think ahead with AI.
           </p>
           <div className="flex flex-wrap gap-4 mb-8">
             <button
