@@ -1,16 +1,55 @@
 import React from 'react';
 
-export const skills = [
-  'Machine Learning',
-  'Prompt Engineering',
-  'RAG Systems',
-  'Agentic Workflows (n8n)',
-  'LLM Integration',
-  'Vector Databases (Pinecone)',
-  'Progressive Web Apps',
-  'Vulnerability Assessment',
-  'API Automation',
-  'Python Development',
+const skillCategories = [
+  {
+    category: 'AI / ML',
+    items: [
+      'LangGraph',
+      'Multi-Agent Systems',
+      'RAG',
+      'Prompt Engineering',
+      'Groq',
+      'ElevenLabs',
+    ],
+  },
+  {
+    category: 'Backend',
+    items: [
+      'FastAPI',
+      'Python',
+      'Redis',
+      'API Design',
+      'Authentication (Supabase/Clerk)',
+    ],
+  },
+  {
+    category: 'Frontend',
+    items: [
+      'JavaScript',
+      'HTML/CSS',
+      'Web Speech API',
+      'WebSocket Streaming',
+    ],
+  },
+  {
+    category: 'Data / Infra',
+    items: [
+      'ChromaDB',
+      'SentenceTransformers',
+      'SQL',
+      'Docker',
+      'GitHub Actions',
+      'pytest',
+    ],
+  },
+  {
+    category: 'Deployment',
+    items: [
+      'Render',
+      'Railway',
+      'Multi-Service Deployment',
+    ],
+  },
 ];
 
 const Skills = () => {
@@ -21,14 +60,23 @@ const Skills = () => {
           Tech Arsenal
         </span>
       </h2>
-      <div className="flex flex-wrap justify-center gap-4">
-        {skills.map((skill, index) => (
-          <span
-            key={skill}
-            className="px-5 py-2 bg-gradient-to-r from-plum/20 to-olive/20 text-beige rounded-full text-sm font-medium border border-plum/30 shadow-lg"
-          >
-            {skill}
-          </span>
+      <div className="max-w-4xl mx-auto space-y-8">
+        {skillCategories.map((group) => (
+          <div key={group.category}>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-olive mb-3">
+              {group.category}
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {group.items.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-4 py-2 bg-gradient-to-r from-plum/20 to-olive/20 text-beige rounded-full text-sm font-medium border border-plum/30 shadow-lg"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </section>
