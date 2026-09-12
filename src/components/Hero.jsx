@@ -16,6 +16,16 @@ const Hero = () => {
 
   return (
     <section id="hero" className="min-h-screen flex items-center pt-16 pb-12">
+      <style>{`
+        @keyframes softBreathe {
+          0%, 100% { opacity: 0.15; transform: scale(1); }
+          50%      { opacity: 0.22; transform: scale(1.02); }
+        }
+        .hero-halo {
+          animation: softBreathe 6s ease-in-out infinite;
+        }
+      `}</style>
+
       <div className="grid md:grid-cols-2 gap-12 items-center w-full">
         <div>
           <div className="inline-block px-3 py-1 bg-plum/20 text-plum rounded-full text-sm mb-4 border border-plum/30">
@@ -57,7 +67,9 @@ const Hero = () => {
 
         <div className="flex justify-center">
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-plum to-olive rounded-full blur-2xl opacity-30 animate-pulse"></div>
+            {/* Tight, soft glow — very little spread */}
+            <div className="absolute inset-0 bg-gradient-to-r from-plum to-olive rounded-full blur-md hero-halo"></div>
+
             <img
               src="/images/profile.jpg"
               alt="Adina Rehman"
@@ -67,6 +79,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
       <div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer animate-bounce"
         onClick={() => scrollTo('about')}
