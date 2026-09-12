@@ -1,5 +1,4 @@
 import React from 'react';
-import { Briefcase } from 'lucide-react';
 import { experience } from '../data/portfolioData';
 
 const ExperienceCard = ({ job }) => {
@@ -30,12 +29,14 @@ const ExperienceCard = ({ job }) => {
 const Experience = () => {
     return (
         <section id="experience" className="py-20">
-            <h2 className="text-4xl font-bold mb-12 text-center">
+            <h2 className="text-4xl font-bold mb-3 text-center">
                 <span className="bg-gradient-to-r from-plum to-olive bg-clip-text text-transparent">
-                    <Briefcase className="inline-block mb-1 mr-2" size={32} />
                     Experience
                 </span>
             </h2>
+            <p className="text-center text-beige/40 text-sm tracking-wide mb-16">
+                Where I've worked
+            </p>
             <div className="max-w-3xl mx-auto space-y-6">
                 {experience.map((job) => (
                     <ExperienceCard key={job.id} job={job} />

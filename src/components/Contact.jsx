@@ -37,16 +37,16 @@ const Contact = () => {
       setError('Please enter a valid email');
       return;
     }
-    
+
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      
+
       const data = await response.json();
-      
+
       if (response.ok) {
         setSubmitted(true);
         setFormData({ name: '', email: '', message: '' });
@@ -61,17 +61,36 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20">
-      <h2 className="text-4xl font-bold mb-8 text-center">
+      {/* Handwritten font — Caveat, loaded from Google Fonts */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap');
+
+        .handwritten {
+          font-family: 'Caveat', 'Brush Script MT', cursive;
+          font-weight: 700;
+          letter-spacing: 0.3px;
+          line-height: 1.15;
+        }
+      `}</style>
+
+      <h2 className="text-4xl font-bold mb-3 text-center">
         <span className="bg-gradient-to-r from-plum to-olive bg-clip-text text-transparent">
           Let's Connect
         </span>
       </h2>
+      <p className="text-center text-beige/40 text-sm tracking-wide mb-16">
+        Reach out anytime
+      </p>
+
       <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
         <div>
-          <p className="text-beige/70 mb-6 leading-relaxed">
-             Reach out anytime.Lets create a World Worth Living-In!
+          {/* Handwritten line only */}
+          <p className="handwritten text-plum text-3xl md:text-4xl mb-6">
+            Let's create a World Worth Living-In!
           </p>
-          <div className="space-y-4">
+
+          {/* Tighter social links — reduced spacing & padding */}
+          <div className="space-y-1">
             {socialLinks.map((link) => {
               const Icon = socialIcons[link.platform];
               return (
@@ -80,10 +99,10 @@ const Contact = () => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-beige/70 hover:text-plum transition p-3 rounded-lg hover:bg-beige/5"
+                  className="flex items-center gap-3 text-beige/70 hover:text-plum transition px-3 py-1.5 rounded-lg hover:bg-beige/5"
                 >
-                  {Icon && <Icon size={20} />}
-                  <span>{link.label}</span>
+                  {Icon && <Icon size={18} />}
+                  <span className="text-sm">{link.label}</span>
                 </a>
               );
             })}
@@ -124,7 +143,7 @@ const Contact = () => {
             className="w-full py-3 bg-gradient-to-r from-plum to-plum/80 text-beige rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-plum/20 transition disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={loading}
           >
-            {loading ? 'Sending...' : 'Send Message'} 
+            {loading ? 'Sending...' : 'Send Message'}
             <Send size={18} />
           </button>
           {submitted && (
