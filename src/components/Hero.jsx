@@ -39,9 +39,10 @@ const Hero = () => {
             </span>
           </h1>
           <p className="text-xl text-beige/70 mb-6 leading-relaxed">
-            AI/ML Engineer — Agentic Systems & Automation
+            AI Engineer building Agentic AI & LLM systems
+
             <br />
-            Think ahead with AI.
+            Python · LangGraph · RAG · LLMs
           </p>
           <div className="flex flex-wrap gap-4 mb-8">
             <button
