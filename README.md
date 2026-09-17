@@ -1,66 +1,78 @@
-# Adina Rehman – AI Portfolio
+# Adina Rehman | AI Developer
 
-## AI Orchestration Specialist | Generative AI Engineer | Data Analyst
+> Building practical AI systems with LLMs, agents, RAG, automation, and modern software engineering.
 
-🔗 **Live Site:** [Coming soon after Vercel deploy]
-
----
-
-## 🚀 About this Portfolio
-
-Modern, responsive portfolio website showcasing my AI/ML projects, certifications, and technical skills.
-
-### 🎨 Design
-- Dark theme with plum & olive accents
-- Smooth animations
-- Fully responsive (mobile/tablet/desktop)
-
-### 🐾 Fun Detail
-- Animated cat and dog running across footer
-- Welcome message on page load
+🌐 **Live Portfolio:** https://adina-portfolio.vercel.app/  
+💻 **GitHub:** https://github.com/adina-mini
 
 ---
 
-## 🛠️ Tech Stack
+## About
 
-- **React** – Component-based architecture
-- **Tailwind CSS** – Styling
-- **Framer Motion** – Animations
-- **Vite** – Build tool
+I'm an AI developer focused on building practical LLM-powered applications and agentic systems.
 
----
+My main interests are **AI Agents, RAG, Multi-Agent Systems, LLM Evaluation, AI Automation, and AI Engineering**.
 
-## 📂 Projects Featured
-
-1. **Smart Habit Architect (PWA)** – Offline-first habit tracker
-2. **Agentic Lead Intake Engine** – n8n + Llama 3 automation
-3. **Intelligent Email Response** – GPT-4o mini email automation
-4. **RAG Technical Audit Analyst** – Pinecone + OpenAI embeddings
+I like turning ideas into working, tested, and deployable systems.
 
 ---
 
-## 📜 Certifications
+## Tech Stack
 
-### Specializations
-- Machine Learning Specialization – Stanford
-- Google Prompting Essentials – Google
+**Languages:** Python, C++, JavaScript
 
-### Technical Courses
-- DeepLearning.AI (3 courses)
-- IBM, Microsoft, Google certifications
+**AI / ML:** LLMs, RAG, AI Agents, Multi-Agent Systems, Prompt Engineering, LLM Evaluation
 
----
+**Frameworks & Tools:** LangGraph, LangChain, LangSmith, FastAPI, ChromaDB, Groq, Tavily, n8n
 
-## 📬 Contact
-
-- **Email:** adinarehman018@gmail.com
-- **GitHub:** [adina-mini](https://github.com/adina-mini) 
-- **LinkedIn:** [Adina Rehman Z](https://linkedin.com/in/adina-rehman-z/)
+**Development:** REST APIs, Git, GitHub, Vercel, GitHub Pages
 
 ---
 
-## 🖥️ Run Locally
+## Featured Projects
 
-```bash
-npm install
-npm run dev
+### HeatOps Autopilot
+Autonomous heat-risk monitoring agent built with LangGraph.
+
+`Screen → Investigate → Assess → Decide → Act`
+
+🔗 [Repository](https://github.com/adina-mini/heatops-autopilot)  
+🔗 [Live Dashboard](https://adina-mini.github.io/heatops-autopilot/dashboard.html)
+
+### Multi-Agent Research System
+Production-style **Planner → Researcher → Writer** pipeline with LLM-as-Judge evaluation, guardrails, retry logic, and LangSmith observability.
+
+### QM Assistant
+Knowledge-based AI chatbot built with **FastAPI, Groq, Python, and JavaScript**, designed for company information and customer-facing interactions.
+
+### Constitution of Pakistan RAG
+RAG application using **ChromaDB, MiniLM embeddings, pdfplumber, and LLMs** for grounded question answering over constitutional documents.
+
+---
+
+## Experience
+
+**AI/ML Developer Intern — QM Logics**
+
+Worked on LLM applications, RAG pipelines, AI agents, LangGraph workflows, tool calling, multi-agent systems, API integrations, and evaluation.
+
+---
+
+## Learning & Building
+
+Currently exploring:
+
+- Autonomous AI agents
+- Agent memory and long-running workflows
+- Reliable RAG
+- Multi-agent architectures
+- LLM evaluation & observability
+- AI automation
+- AI products and developer tools
+
+---
+
+## Connect
+
+🌐 Portfolio: https://adina-portfolio.vercel.app/  
+💻 GitHub: https://github.com/adina-mini
