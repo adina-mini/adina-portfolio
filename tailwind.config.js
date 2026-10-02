@@ -11,6 +11,9 @@ export default {
         plum: '#8B5E7C',
         olive: '#6B8A6B',
         beige: '#E7D7C1',
+        charcoal: '#0D0D11',
+        cardDark: '#16161F',
+        silver: '#94A3B8',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

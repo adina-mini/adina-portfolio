@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -8,52 +9,72 @@ import Skills from './components/Skills';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode]   = useState(true);
+  const [loaded, setLoaded]       = useState(false);
+
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.classList.toggle('dark', darkMode);
   }, [darkMode]);
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
+  const handleLoaded   = useCallback(() => setLoaded(true), []);
 
   return (
-    <div className="min-h-screen bg-[#0B0B0B]">
-      {/* Stars Background */}
+    <div className="min-h-screen bg-[#0D0D11] text-slate-100 selection:bg-plum/30 selection:text-white">
+
+      {/* Loading screen — shows until done, then onDone fires */}
+      {!loaded && <LoadingScreen onDone={handleLoaded} />}
+
+      {/* Custom cursor — desktop only */}
+      <div className="hidden md:block">
+        <CustomCursor />
+      </div>
+
+
+
+      {/* Stars + radial gradient background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-plum/5 via-transparent to-transparent"></div>
-        {[...Array(50)].map((_, i) => (
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-plum/5 via-transparent to-transparent" />
+        {[...Array(55)].map((_, i) => (
           <div
             key={i}
             className="absolute rounded-full bg-white/10 animate-twinkle"
             style={{
-              top: `${Math.random() * 100}%`,
+              top:  `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              animationDelay: `${Math.random() * 5}s`,
+              width:  `${Math.random() * 2.5 + 0.5}px`,
+              height: `${Math.random() * 2.5 + 0.5}px`,
+              animationDelay:    `${Math.random() * 5}s`,
               animationDuration: `${Math.random() * 3 + 2}s`,
             }}
           />
         ))}
       </div>
 
-      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Hero />
-        <About />
-        <Experience />
-        <Skills />
-        <Projects />
-        <Certifications />
-        <Contact />
-      </main>
-      <Footer />
+      {/* Main content — fades in after loader exits */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: loaded ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Hero />
+          <About />
+          <Experience />
+          <Skills />
+          <Projects />
+          <Certifications />
+          <Contact />
+        </main>
+        <Footer />
+      </motion.div>
+
     </div>
   );
 }
