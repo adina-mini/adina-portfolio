@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Award, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import { fadeUp, staggerContainer } from '../lib/motion';
 
 const Certifications = () => {
   const [showAll, setShowAll] = useState(false);
@@ -46,43 +48,77 @@ const Certifications = () => {
     setImgErrors((prev) => ({ ...prev, [key]: true }));
   };
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.10 });
+
   return (
-    <section id="certifications" className="py-24">
+    <section id="certifications" className="py-24" ref={ref}>
       <style>{`
-        /* Gradient hairline that runs across the top of each spec card */
         .spec-card {
           position: relative;
-          background: #0F0F0F;
-          border: 1px solid rgba(231, 215, 193, 0.08);
+          background: #16161F;
+          border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 18px;
-          padding: 20px;
+          padding: 22px 20px;
           overflow: hidden;
-          transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
+        /* Top gradient hairline */
         .spec-card::before {
           content: '';
           position: absolute;
           top: 0; left: 0; right: 0;
           height: 1px;
-          background: linear-gradient(to right, transparent, rgba(139,94,124,0.4), rgba(168,176,138,0.3), transparent);
-          opacity: 0.5;
+          background: linear-gradient(to right, transparent, rgba(139,94,124,0.5), rgba(107,138,107,0.4), transparent);
+          opacity: 0.4;
           transition: opacity 0.4s ease;
         }
-        .spec-card:hover {
-          transform: translateY(-3px);
-          border-color: rgba(139,94,124,0.35);
-        }
-        .spec-card:hover::before {
-          opacity: 1;
-        }
-        .spec-card:hover .spec-verify {
-          color: #A8B08A;
-          gap: 6px;
+
+        /* Diagonal shimmer sweep */
+        .spec-card::after {
+          content: '';
+          position: absolute;
+          top: 0; left: -100%;
+          width: 55%;
+          height: 100%;
+          background: linear-gradient(
+            105deg,
+            transparent 20%,
+            rgba(255,255,255,0.035) 50%,
+            transparent 80%
+          );
+          transform: skewX(-15deg);
+          transition: left 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+          pointer-events: none;
         }
 
-        .spec-verify {
-          transition: color 0.3s ease, gap 0.3s ease;
+        .spec-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(139,94,124,0.4);
+          box-shadow: 0 0 0 1px rgba(139,94,124,0.15), 0 20px 40px -16px rgba(139,94,124,0.25);
         }
+        .spec-card:hover::before { opacity: 1; }
+        .spec-card:hover::after  { left: 160%; }
+
+        .spec-card:hover .spec-verify { color: #A8B08A; gap: 6px; }
+        .spec-verify { transition: color 0.3s ease, gap 0.3s ease; }
+
+        /* Pill tags shimmer */
+        .cert-pill {
+          position: relative; overflow: hidden;
+          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cert-pill::after {
+          content: '';
+          position: absolute;
+          top: 0; left: -80%;
+          width: 50%; height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(139,94,124,0.12), transparent);
+          transform: skewX(-15deg);
+          transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cert-pill:hover::after { left: 130%; }
       `}</style>
 
       {/* ---------- Header ---------- */}
@@ -97,11 +133,20 @@ const Certifications = () => {
         </p>
       </div>
 
-      {/* ---------- Specializations ---------- */}
+      {/* Specializations */}
       <div className="mb-14">
-        <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto px-6">
+        <motion.div
+          variants={staggerContainer(0.1, 0.15)}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto px-6"
+        >
           {specializations.map((cert) => (
-            <div key={cert.title} className="spec-card group">
+            <motion.div
+              key={cert.title}
+              variants={fadeUp(0, 18)}
+              className="spec-card group"
+            >
               <div className="relative flex items-start gap-4">
                 {/* Logo */}
                 <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-white flex items-center justify-center p-2 shadow-md">
@@ -122,13 +167,13 @@ const Certifications = () => {
 
                 {/* Text */}
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-[15px] font-bold text-beige mb-1 leading-snug">
+                  <h4 className="text-[15px] font-bold text-white mb-1 leading-snug">
                     {cert.title}
                   </h4>
-                  <p className="text-plum text-xs mb-3">{cert.issuer}</p>
+                  <p className="text-plum text-xs mb-3 font-medium">{cert.issuer}</p>
 
                   <div className="flex items-center gap-3 flex-wrap">
-                    <span className="text-[11px] text-beige/45 tracking-wide">
+                    <span className="text-[11px] text-slate-400 tracking-wide font-mono">
                       {cert.date}
                     </span>
                     {cert.verifyUrl && (
@@ -144,9 +189,9 @@ const Certifications = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* ---------- Other courses ---------- */}
@@ -162,20 +207,25 @@ const Certifications = () => {
           <span className="h-px w-10 bg-gradient-to-l from-transparent to-olive/40" />
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2.5 mb-5">
+        <motion.div
+          variants={staggerContainer(0.05, 0.1)}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="flex flex-wrap justify-center gap-2.5 mb-5"
+        >
           {visibleCerts.map((cert) => (
-            <span
+            <motion.span
               key={cert.title}
-              className="group px-3 py-1.5 bg-beige/[0.04] border border-beige/10 rounded-full text-[11px] text-beige/65 hover:border-plum/40 hover:bg-plum/[0.06] hover:text-beige/90 transition-all duration-300"
+              variants={fadeUp(0, 10)}
+              className="cert-pill group px-3 py-1.5 bg-beige/[0.04] border border-beige/10 rounded-full text-[11px] text-beige/65 hover:border-plum/40 hover:bg-plum/[0.06] hover:text-beige/90"
             >
               {cert.title}
               <span className="text-beige/30 group-hover:text-plum/50 transition-colors">
-                {' · '}
-                {cert.issuer}
+                {' · '}{cert.issuer}
               </span>
-            </span>
+            </motion.span>
           ))}
-        </div>
+        </motion.div>
 
         {otherCerts.length > 4 && (
           <div className="flex justify-center mt-2">

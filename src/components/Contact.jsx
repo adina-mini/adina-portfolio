@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Send, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { fadeUp, slideLeft, slideRight, staggerContainer, scalePop, ease } from '../lib/motion';
 
 const socialLinks = [
   { platform: 'github', label: 'github.com/adina-mini', url: 'https://github.com/adina-mini' },
@@ -17,6 +19,8 @@ const socialIcons = {
 };
 
 const Contact = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -60,7 +64,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-20" ref={ref}>
       {/* Handwritten font — Caveat, loaded from Google Fonts */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap');
@@ -73,83 +77,124 @@ const Contact = () => {
         }
       `}</style>
 
-      <h2 className="text-4xl font-bold mb-3 text-center">
+      <motion.h2
+        variants={fadeUp(0)}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+        className="text-4xl font-bold mb-3 text-center"
+      >
         <span className="bg-gradient-to-r from-plum to-olive bg-clip-text text-transparent">
           Let's Connect
         </span>
-      </h2>
-      <p className="text-center text-beige/40 text-sm tracking-wide mb-16">
+      </motion.h2>
+      <motion.p
+        variants={fadeUp(0.1)}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+        className="text-center text-beige/40 text-sm tracking-wide mb-16"
+      >
         Reach out anytime
-      </p>
+      </motion.p>
 
       <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-        <div>
+        <motion.div
+          variants={slideLeft(0.1)}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+        >
           {/* Handwritten line only */}
           <p className="handwritten text-plum text-3xl md:text-4xl mb-6">
             Let's create a World Worth Living-In!
           </p>
 
-          {/* Tighter social links — reduced spacing & padding */}
-          <div className="space-y-1">
+          {/* Tighter social links */}
+          <motion.div
+            variants={staggerContainer(0.07, 0.25)}
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+            className="space-y-1"
+          >
             {socialLinks.map((link) => {
               const Icon = socialIcons[link.platform];
               return (
-                <a
+                <motion.a
                   key={link.platform}
+                  variants={fadeUp(0, 10)}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-beige/70 hover:text-plum transition px-3 py-1.5 rounded-lg hover:bg-beige/5"
+                  whileHover={{ x: 4, color: '#8B5E7C' }}
+                  transition={{ duration: 0.2, ease: [0.25,1,0.5,1] }}
+                  className="flex items-center gap-3 text-beige/70 px-3 py-1.5 rounded-lg hover:bg-beige/5"
                 >
                   {Icon && <Icon size={18} />}
                   <span className="text-sm">{link.label}</span>
-                </a>
+                </motion.a>
               );
             })}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
+        <motion.form
+          variants={staggerContainer(0.08, 0.2)}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          onSubmit={handleSubmit}
+          className="space-y-4"
+        >
+          <motion.input
+            variants={fadeUp(0, 12)}
             type="text"
             name="name"
             placeholder="Your Name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-xl bg-[#0F0F0F] border border-beige/20 text-beige focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent transition"
+            className="w-full px-4 py-3 rounded-xl bg-[#16161F] border border-white/[0.08] text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-plum/40 focus:border-transparent transition"
             disabled={loading}
           />
-          <input
+          <motion.input
+            variants={fadeUp(0, 12)}
             type="email"
             name="email"
             placeholder="Your Email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-xl bg-[#0F0F0F] border border-beige/20 text-beige focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent transition"
+            className="w-full px-4 py-3 rounded-xl bg-[#16161F] border border-white/[0.08] text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-plum/40 focus:border-transparent transition"
             disabled={loading}
           />
-          <textarea
+          <motion.textarea
+            variants={fadeUp(0, 12)}
             name="message"
             placeholder="Your Message"
             rows="4"
             value={formData.message}
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-xl bg-[#0F0F0F] border border-beige/20 text-beige focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent transition resize-none"
+            className="w-full px-4 py-3 rounded-xl bg-[#16161F] border border-white/[0.08] text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-plum/40 focus:border-transparent transition resize-none"
             disabled={loading}
           />
           {error && <p className="text-red-400 text-sm">{error}</p>}
-          <button
+          <motion.button
+            variants={scalePop(0)}
+            whileHover={{ y: -2, scale: 1.01, boxShadow: '0 8px 28px rgba(139,94,124,0.35)' }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.18, ease: [0.34, 1.56, 0.64, 1] }}
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-plum to-plum/80 text-beige rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-plum/20 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-3 bg-gradient-to-r from-plum to-plum/80 text-beige rounded-xl font-semibold flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={loading}
           >
             {loading ? 'Sending...' : 'Send Message'}
             <Send size={18} />
-          </button>
+          </motion.button>
           {submitted && (
-            <p className="text-olive text-center">✨ Message sent! I'll get back to you soon.</p>
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-olive text-center"
+            >
+              ✨ Message sent! I'll get back to you soon.
+            </motion.p>
           )}
-        </form>
+        </motion.form>
       </div>
     </section>
   );
