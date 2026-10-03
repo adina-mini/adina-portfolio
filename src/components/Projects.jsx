@@ -53,16 +53,19 @@ const ProjectCard = ({ project, index }) => {
       onMouseLeave={onMouseLeave}
       className="project-spotlight-card group relative flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] bg-[#16161F] transition-all duration-300 hover:border-plum/40 hover:-translate-y-1.5 shadow-xl hover:shadow-2xl"
     >
-      {/* Image showcase — uses object-contain so diagrams & dashboards are 100% visible without being cut off */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0A0A0E] border-b border-white/[0.06] flex items-center justify-center p-3">
+      {/* Image showcase — fills edge-to-edge with zero black space or padding */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-white/[0.08]">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-contain rounded-lg transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-103"
+          className="w-full h-full object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
           onError={(e) => {
             e.target.style.display = 'none';
           }}
         />
+
+        {/* Subtle bottom gradient to blend naturally into card body */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#16161F] via-transparent to-transparent opacity-60 pointer-events-none" />
 
         {/* Floating Glass Badges */}
         <div className="absolute top-3.5 left-3.5 z-10">
