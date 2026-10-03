@@ -159,13 +159,7 @@ const Projects = () => {
       <style>{`
         .project-spotlight-card {
           position: relative;
-          background:
-            radial-gradient(
-              circle 260px at var(--sx, -999px) var(--sy, -999px),
-              rgba(139,94,124,0.14),
-              transparent 70%
-            ),
-            #16161F;
+          background: #16161F;
         }
         .project-spotlight-card::before {
           content: '';
