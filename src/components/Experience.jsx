@@ -98,14 +98,7 @@ const Experience = () => {
     <section id="experience" className="py-24" ref={ref}>
       <style>{`
         .experience-spotlight-card {
-          /* Spotlight effect — follows mouse via --sx --sy CSS vars */
-          background:
-            radial-gradient(
-              circle 240px at var(--sx, -999px) var(--sy, -999px),
-              rgba(139,94,124,0.14),
-              transparent 70%
-            ),
-            #16161F;
+          background: #16161F;
         }
         .experience-spotlight-card:hover {
           box-shadow:
