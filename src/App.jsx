@@ -16,7 +16,6 @@ function App() {
   const [darkMode, setDarkMode]   = useState(true);
   const [loaded, setLoaded]       = useState(false);
 
-
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
   }, [darkMode]);
@@ -33,27 +32,6 @@ function App() {
       {/* Custom cursor — desktop only */}
       <div className="hidden md:block">
         <CustomCursor />
-      </div>
-
-
-
-      {/* Stars + radial gradient background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-plum/5 via-transparent to-transparent" />
-        {[...Array(55)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-white/10 animate-twinkle"
-            style={{
-              top:  `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width:  `${Math.random() * 2.5 + 0.5}px`,
-              height: `${Math.random() * 2.5 + 0.5}px`,
-              animationDelay:    `${Math.random() * 5}s`,
-              animationDuration: `${Math.random() * 3 + 2}s`,
-            }}
-          />
-        ))}
       </div>
 
       {/* Main content — fades in after loader exits */}
